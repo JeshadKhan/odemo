@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+	<record id="menu_formnew" model="website.menu">
+        <field name="name">Online Form</field>
+        <field name="url">/formnew/online</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <template id="online_formnew">
+
+        <t t-call="website.layout">
+
+            <div id="wrap" class="oe_structure oe_empty js_get_admission_data container-fluid">
+
+                <form action="/formnew/online/submit" method="POST" id="online_form_new" enctype="multipart/form-data">
+
+                    <div>
+
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                        <h3>Personal</h3>
+
+                        <section>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="first_name">First Name <span class="mandatory-field">*</span></label>
+                                    <input class="form-control" name="first_name" id="first_name" type="text" required="required" placeholder="First name"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middle_name">Middle Name</label>
+                                    <input class="form-control" name="middle_name" id="middle_name" type="text" placeholder="Middle name"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="last_name">Last Name <span class="mandatory-field">*</span></label>
+                                    <input class="form-control" name="last_name" id="last_name" type="text" required="required" placeholder="Last name"/>
+                                </div>
+                            </div>
+
+                            <!-- <button type="button" class="btn btn-secondary" id="confirmSubmit">Submit</button> -->
+                            <button type="submit" class="btn btn-secondary" id="confirmSubmit">Submit</button>
+
+                        </section>
+
+                    </div>
+
+                </form>
+            </div>
+           
+        </t>
+
+    </template>
+
+    <template id="formnew_successful">
+		<t t-call="website.layout">
+			<h2 class="text-center" style="font-weight: bold;">Thank You.</h2>
+		</t>
+	</template>
+    
+</odoo>
